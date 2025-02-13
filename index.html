@@ -15,6 +15,23 @@
     channel.bind('my-event', function(data) {
       alert(JSON.stringify(data));
     });
+    <?php
+  require __DIR__ . '/vendor/autoload.php';
+
+  $options = array(
+    'cluster' => 'ap3',
+    'useTLS' => true
+  );
+  $pusher = new Pusher\Pusher(
+    '128fd68c3a8f3bdde537',
+    '873dbe1ad082944f6f5b',
+    '1940001',
+    $options
+  );
+
+  $data['message'] = 'hello world';
+  $pusher->trigger('my-channel', 'my-event', $data);
+?>
   </script>
 </head>
 <body>
